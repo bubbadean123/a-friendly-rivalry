@@ -1,0 +1,22 @@
+<h1 style="text-align:center;"><span>New Combatant</span></h1>
+<p style="text-align:center;"><span>Enter information</span></p>
+
+<%= form_for :post, url: people_path do |f| %>
+  <div align="center">
+    <p style="text-align:center;">
+      <%= f.label :combatant_name %><br>
+      <%= f.text_field :combatant_name %><br>
+    </p>
+
+    <p style="text-align:center;">
+      <%= f.label :combatant_description %><br>
+      <%= f.text_field :combatant_description %><br>
+    </p>
+  </div>
+
+  <p style="text-align:center;">
+    <%= f.submit "Save Combatant"%>
+  </p>
+<% end %>
+
+

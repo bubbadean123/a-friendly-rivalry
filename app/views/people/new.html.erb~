@@ -1,0 +1,20 @@
+<h1 style="text-align:center;"><span>New Combatant</span></h1>
+<p style="text-align:center;"><span>Enter information</span></p>
+
+<%= form_for :person do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %><br>
+  </p>
+
+  <p>
+    <%= f.submit :create %>
+  </p>
+<% end %>
+
+
