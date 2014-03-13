@@ -1,0 +1,17 @@
+<h1>Listing people</h1>
+ 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+ 
+  <% @people.each do |person| %>
+    <tr>
+      <td><%= person.combatant_name %></td>
+      <td><%= person.combatant_description %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Home', "/" %>
