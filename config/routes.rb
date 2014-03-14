@@ -53,6 +53,7 @@ AFriendlyRivalry::Application.routes.draw do
   #
 
   resources :people
+  resources :games
 
   root :to => 'home#index'
 
