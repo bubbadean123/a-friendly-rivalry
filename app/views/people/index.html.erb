@@ -10,6 +10,9 @@
     <tr>
       <td><%= person.combatant_name %></td>
       <td><%= person.combatant_description %></td>
+      <td><%= link_to 'Show', person %></td>
+      <td><%= link_to 'Edit', edit_person_path(person) %></td>
+      <td><%= link_to 'Delete', person_path(person), method: :delete, data: { confirm: 'Remove Combatant?' } %></td>
     </tr>
   <% end %>
 </table>
