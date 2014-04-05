@@ -1,5 +1,31 @@
 <p id="notice"><%= notice %></p>
 
+<p style="text-align:center">
+  <strong>Title:</strong>
+  <%= @game.title %>
+</p>
+ 
+<p style="text-align:center">
+  <strong>Game Type:</strong>
+  <%= @game.game_type %>
+</p>
+
+<h2>PLAYERS</h2>
+<tr>
+<% @game.person_ids.each do |id| %>
+  <td><%= Person.find(id).name %></td><br/>
+<% end %>
+</tr>
+
+<p>
+  <strong>SelectWinner:</strong>
+<% @game.person_ids.each do |id| %>
+<div>
+  <%= radio_button_tag :name, "Person.find(id)" %>
+  <%= label_tag :winner_name, "#{Person.find(id).name}" %>
+</div>
+<% end %>
+</p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>

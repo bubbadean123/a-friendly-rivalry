@@ -43,8 +43,9 @@ class GamesController < ApplicationController
     @game = Game.new(params[:game])
 
     respond_to do |format|
+      params[:game][:person_ids] ||= []
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to @game, notice: 'Game was successfully started.' }
         format.json { render json: @game, status: :created, location: @game }
       else
         format.html { render action: "new" }
@@ -59,6 +60,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     respond_to do |format|
+      params[:game][:person_ids] ||= []
       if @game.update_attributes(params[:game])
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { head :no_content }
@@ -67,6 +69,10 @@ class GamesController < ApplicationController
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def record_winner
+    @game = Game.find(params[:id])
   end
 
   # DELETE /games/1

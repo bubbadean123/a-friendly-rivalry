@@ -21,6 +21,13 @@
   <%= f.text_area :game_type %>
 </p>
 
+<% for person in Person.find(:all) %>  
+    <div>  
+      <%= check_box_tag "game[person_ids][]", person.id, @game.people.include?(person) %>  
+      <%= person.name %>  
+    </div>  
+<% end %> 
+
 
 <div class="actions">
   <%= f.submit %>

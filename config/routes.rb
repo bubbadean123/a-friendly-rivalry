@@ -55,6 +55,8 @@ AFriendlyRivalry::Application.routes.draw do
   resources :people
   resources :games
 
+  match 'games/:id/record_winner' => 'game#record_winner'
+
   root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
