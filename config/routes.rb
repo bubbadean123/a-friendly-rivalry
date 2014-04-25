@@ -53,9 +53,13 @@ AFriendlyRivalry::Application.routes.draw do
   #
 
   resources :people
-  resources :games
+  resources :games do
+    member do
+      post :record_winner
+    end
+  end
 
-  match 'games/:id/record_winner' => 'game#record_winner'
+  # match 'games/record_winner', :id => /d+/, :via => :post, :controller => "games", :action => "record_winner"
 
   root :to => 'home#index'
 

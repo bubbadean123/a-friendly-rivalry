@@ -73,6 +73,17 @@ class GamesController < ApplicationController
 
   def record_winner
     @game = Game.find(params[:id])
+
+    respond_to do |format|
+      if @game.update_attributes(params[:game])
+        winner_id = params[:game][:winner_id]
+        format.html { redirect_to @game, notice: "#{Person.find(winner_id).name} won the game!" }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @game.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /games/1

@@ -18,13 +18,20 @@
 </tr>
 
 <p>
-  <strong>SelectWinner:</strong>
-<% @game.person_ids.each do |id| %>
-<div>
-  <%= radio_button_tag :name, "Person.find(id)" %>
-  <%= label_tag :winner_name, "#{Person.find(id).name}" %>
-</div>
-<% end %>
+  <div>
+    <strong>Winner:</strong>
+  </div>
+  <%= form_for(@game, :url => record_winner_game_path(@game), :method => :post) do |f| %>
+    <% @game.person_ids.each do |id| %>
+    <div>
+      <%= radio_button_tag "game[winner_id]", id %>
+      <%= label_tag :winner_name, "#{Person.find(id).name}" %>
+    </div>
+    <% end %>
+    <div class="actions">
+      <%= f.submit "Complete Game!" %>
+    </div>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
