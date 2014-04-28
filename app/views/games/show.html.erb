@@ -1,4 +1,15 @@
 <p id="notice"><%= notice %></p>
+<% if @game.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+  <ul>
+    <% @game.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
 <p style="text-align:center">
   <strong>Title:</strong>
@@ -11,16 +22,8 @@
 </p>
 
 <h2>PLAYERS</h2>
-<tr>
-<% @game.person_ids.each do |id| %>
-  <td><%= Person.find(id).name %></td><br/>
-<% end %>
-</tr>
 
 <p>
-  <div>
-    <strong>Winner:</strong>
-  </div>
   <%= form_for(@game, :url => record_winner_game_path(@game), :method => :post) do |f| %>
     <% @game.person_ids.each do |id| %>
     <div>
@@ -32,6 +35,10 @@
       <%= f.submit "Complete Game!" %>
     </div>
   <% end %>
+  <div>
+    <strong>Winner: </strong>
+    <%= Person.find(@game.winner_id_was).name unless @game.winner_id_was.nil? %>
+  </div>
 </p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |

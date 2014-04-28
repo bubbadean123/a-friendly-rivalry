@@ -1,5 +1,19 @@
 <h1 style="text-align:center;"><span>A Friendly Rivalry</span></h1>
 <p style="text-align:center;"><span>Settling old scores with many asterisks</span></p>
+<div>
+<strong>Active Games</strong>
+<% Game.find_each do |game| %>
+  <p><%= game.title.to_s if !game.winner_id %></p>
+<% end %>
+</div>
+
+<div>
+<strong>Top Winners</strong>
+<% Person.find_each do |person| %>
+  <p><%= "#{person.name} Wins: #{Game.where(:winner_id => person.id).count} Games: #{Game.all.select{|game| game.person_ids.include?(person.id)}.count}" %></p>
+<% end %>
+</div>
+
 <%= link_to "All Combatants", controller: "people" %>
 <%= link_to "New Combatant", new_person_path %>
 <%= link_to "NEW GAME", new_game_path %>
